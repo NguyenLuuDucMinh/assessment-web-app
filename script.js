@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // !!! QUAN TRỌNG: API Key không nên để lộ trực tiếp trong code client-side ở môi trường production.
     // !!! Đây là phiên bản demo, hãy cân nhắc các biện pháp bảo mật API Key của bạn.
     const GEMINI_API_KEY = 'AIzaSyCSd73INjzoI4vOxQhsQwJIABFO0ocjdo0'; // API Key của bạn
-    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx825X4CdJ6niyZpOQ0d6bKT1MM_qb3QsmbvC9-9hTeduh3MhQmo0bTlAL0xZ2MMPS9/exec'; // URL Web App của bạn
+    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDdwJLra49OnVuMQRB2seM_XWfZNU5bWuVwIFbi3575XH_2G4uvhst_La0YDmn6YtrCQ/exec'; // URL Web App của bạn
     // --------------------
 
     let questionsData = [];
