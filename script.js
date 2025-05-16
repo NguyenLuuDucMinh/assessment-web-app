@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // !!! QUAN TRỌNG: API Key không nên để lộ trực tiếp trong code client-side ở môi trường production.
     // !!! Đây là phiên bản demo, hãy cân nhắc các biện pháp bảo mật API Key của bạn.
     const GEMINI_API_KEY = 'AIzaSyCSd73INjzoI4vOxQhsQwJIABFO0ocjdo0'; // API Key của bạn
-    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxoy53ENuEhOfGrDvsjNI4mCmABnSuaRbJXQIbjUiwFqrGeMbz2INIcHq8702fJ1fLPOQ/exec'; // URL Web App của bạn
+    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxS23dW9cSlgs5ofhHRHqxWFHLP08x6loi6W2rJKcR6DTzd0LNz-G9P9UPkXhZxJifc-g/exec'; // URL Web App của bạn
     // --------------------
 
     let questionsData = [];
@@ -442,59 +442,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveToGoogleSheet(data) {
-        // Kiểm tra xem GOOGLE_SHEET_APP_SCRIPT_URL có được cấu hình và hợp lệ không
-        if (!GOOGLE_SHEET_APP_SCRIPT_URL ||
-            GOOGLE_SHEET_APP_SCRIPT_URL.trim() === '' ||
-            !GOOGLE_SHEET_APP_SCRIPT_URL.startsWith('https://script.google.com/macros/s/') ||
-            GOOGLE_SHEET_APP_SCRIPT_URL.includes('YOUR_PLACEHOLDER_SIMILAR_STRING_HERE') // Nếu bạn có một chuỗi placeholder cụ thể
-           ) {
-            console.warn("Google Apps Script URL not configured or is invalid. Data not saved to Google Sheet. URL:", GOOGLE_SHEET_APP_SCRIPT_URL);
-            alert("Đã hoàn tất đánh giá. (Lưu ý: Chức năng lưu vào Google Sheet chưa được cấu hình hoặc URL không hợp lệ.)");
-            return; // Không tiếp tục nếu URL không hợp lệ
-        }
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxS23dW9cSlgs5ofhHRHqxWFHLP08x6loi6W2rJKcR6DTzd0LNz-G9P9UPkXhZxJifc-g/exec'; // Thay bằng URL của bạn
 
         try {
-            const response = await fetch(GOOGLE_SHEET_APP_SCRIPT_URL, {
+            const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 cache: 'no-cache',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(data)
             });
 
-            const contentType = response.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) {
-                const result = await response.json();
-                if (result.status === "success") {
-                    console.log("Data saved to Google Sheet successfully:", result.message);
-                    alert("Nộp bài và đánh giá thành công! Kết quả đã được lưu lại.");
-                } else {
-                    console.error("Error from Apps Script:", result.message);
-                    throw new Error(result.message || "Unknown error saving to Google Sheet (JSON response)");
-                }
-            } else {
-                const textResult = await response.text();
-                console.error("Non-JSON response from Google Sheet save:", textResult);
-                if (!response.ok) {
-                     throw new Error(`Lỗi HTTP ${response.status} khi lưu vào Google Sheet. Phản hồi từ server: ${textResult.substring(0, 200)}...`);
-                } else {
-                    console.warn("Unexpected non-JSON success response:", textResult);
-                    alert("Nộp bài và đánh giá thành công! (Phản hồi từ server không phải JSON chuẩn).");
-                }
-            }
+            return { success: true };
         } catch (error) {
-            console.error("Error saving to Google Sheet:", error);
-            let userMessage = `Đã có lỗi xảy ra khi lưu kết quả vào Google Sheet.`;
-            if (error.message.includes("Failed to fetch")) {
-                userMessage += " Vui lòng kiểm tra kết nối mạng hoặc liên hệ quản trị viên (lỗi CORS hoặc network).";
-            } else {
-                userMessage += ` Chi tiết: ${error.message}`;
-            }
-            userMessage += " Tuy nhiên, bài làm của bạn đã được đánh giá.";
-            alert(userMessage);
+            console.error('Error:', error);
+            throw error;
         }
     }
+
     loadQuestions();
 });

@@ -1,13 +1,11 @@
 function doPost(e) {
-  // Set CORS headers
   var headers = {
-    'Access-Control-Allow-Origin': '*', // Cho phép tất cả origin trong môi trường development
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+    'Access-Control-Allow-Origin': '*',  // Cho phép tất cả các domain
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400'
   };
 
-  // Handle OPTIONS request (preflight)
   if (e.parameter.method == 'OPTIONS') {
     return ContentService.createTextOutput('')
       .setMimeType(ContentService.MimeType.TEXT)
@@ -30,12 +28,18 @@ function doPost(e) {
       throw new Error('Không tìm thấy sheet');
     }
     
-    // Thêm dữ liệu vào sheet
+    // Thêm dữ liệu vào sheet theo cấu trúc mới
     sheet.appendRow([
-      new Date(),  // Timestamp
-      data.name,   // Tên
-      data.email,  // Email
-      data.score   // Điểm số
+      new Date(),                              // Timestamp
+      data.studentInfo.name,                   // Tên sinh viên
+      data.studentInfo.school,                 // Trường
+      data.studentInfo.course,                 // Khóa/Ngành
+      data.studentInfo.submissionTime,         // Thời gian nộp bài
+      data.aiEvaluation.score,                 // Điểm số
+      data.aiEvaluation.grade,                 // Xếp loại
+      data.aiEvaluation.generalFeedback,       // Đánh giá chung
+      JSON.stringify(data.studentAnswers),     // Chi tiết câu trả lời
+      JSON.stringify(data.aiEvaluation.detailedFeedback)  // Chi tiết đánh giá
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
@@ -46,4 +50,8 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON)
       .setHeaders(headers);
   }
+}
+
+function doGet(e) {
+  return doPost(e);
 }
