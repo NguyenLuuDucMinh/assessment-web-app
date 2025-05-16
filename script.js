@@ -322,33 +322,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateFinalScoreAndFeedback(evaluationResults, totalQuestions) {
-        let correctAnswersCount = 0;
-        evaluationResults.forEach(res => {
-            if (res.isCorrect) {
-                correctAnswersCount++;
-            }
-        });
+        const correctAnswersCount = evaluationResults.filter(res => res.isCorrect).length;
+        const theoryCorrect = evaluationResults.filter((res, idx) => res.isCorrect && idx < 8).length;
+        const practicalCorrect = evaluationResults.filter((res, idx) => res.isCorrect && idx >= 8).length;
 
         const overallScore = parseFloat(((correctAnswersCount / totalQuestions) * 10).toFixed(1));
 
         let grade = "";
         let gradeClass = "";
-        let generalFeedback = "";
 
         // Thang điểm đánh giá bạn cung cấp
-        if (overallScore >= 9) { grade = "Xuất sắc"; gradeClass = "excellent"; generalFeedback = "Bài làm rất tốt, thể hiện sự hiểu biết sâu sắc về các khái niệm và kỹ năng lập trình xuất sắc!"; }
-        else if (overallScore >= 8) { grade = "Giỏi"; gradeClass = "good"; generalFeedback = "Bài làm tốt, nắm vững kiến thức và có kỹ năng áp dụng tốt."; }
-        else if (overallScore >= 7) { grade = "Khá"; gradeClass = "fair"; generalFeedback = "Bài làm ở mức khá, có hiểu biết về các chủ đề nhưng cần củng cố thêm một số mảng."; }
-        else if (overallScore >= 5) { grade = "Trung bình"; gradeClass = "average"; generalFeedback = "Bài làm đạt mức trung bình, cần ôn tập và thực hành nhiều hơn để cải thiện."; }
-        else { grade = "Yếu"; gradeClass = "weak"; generalFeedback = "Kết quả chưa tốt, bạn cần xem lại kiến thức cơ bản và luyện tập thêm rất nhiều."; }
+        if (overallScore >= 9) { grade = "Xuất sắc"; gradeClass = "excellent"; }
+        else if (overallScore >= 8) { grade = "Giỏi"; gradeClass = "good"; }
+        else if (overallScore >= 7) { grade = "Khá"; gradeClass = "fair"; }
+        else if (overallScore >= 5) { grade = "Trung bình"; gradeClass = "average"; }
+        else { grade = "Yếu"; gradeClass = "weak"; }
 
-        generalFeedback += ` Bạn đã trả lời đúng ${correctAnswersCount}/${totalQuestions} câu.`;
+        let encouragingFeedback = `Bạn đã hoàn thành ${correctAnswersCount}/${totalQuestions} câu hỏi đúng.\n\n`;
+        
+        if (overallScore >= 9) {
+            encouragingFeedback += `Thật ấn tượng! Bạn đã thể hiện sự hiểu biết xuất sắc về cả lý thuyết (${theoryCorrect}/8 câu) và thực hành (${practicalCorrect}/12 câu). 
+            Đặc biệt, cách bạn giải quyết các bài toán thực tế cho thấy khả năng tư duy logic và kỹ năng lập trình rất tốt. 
+            Hãy tiếp tục phát huy và khám phá thêm các công nghệ mới nhé!`;
+        } else if (overallScore >= 8) {
+            encouragingFeedback += `Rất tốt! Bạn đã nắm vững kiến thức cơ bản với ${theoryCorrect}/8 câu lý thuyết và ${practicalCorrect}/12 câu thực hành đúng. 
+            Khả năng giải quyết vấn đề của bạn rất tốt. Hãy tiếp tục rèn luyện để hoàn thiện hơn nữa nhé!`;
+        } else if (overallScore >= 7) {
+            encouragingFeedback += `Tốt! Bạn có nền tảng khá vững với ${theoryCorrect}/8 câu lý thuyết và ${practicalCorrect}/12 câu thực hành đúng. 
+            Hãy dành thêm thời gian thực hành và tìm hiểu sâu hơn về các khái niệm quan trọng. 
+            Bạn đang đi đúng hướng!`;
+        } else if (overallScore >= 5) {
+            encouragingFeedback += `Bạn đã thể hiện sự hiểu biết cơ bản với ${theoryCorrect}/8 câu lý thuyết và ${practicalCorrect}/12 câu thực hành đúng. 
+            Hãy tập trung vào việc làm nhiều bài tập thực hành hơn và củng cố lại các khái niệm nền tảng. 
+            Đừng ngại thử thách bản thân với các bài tập khó hơn!`;
+        } else {
+            encouragingFeedback += `Cảm ơn bạn đã hoàn thành bài test! Với ${theoryCorrect}/8 câu lý thuyết và ${practicalCorrect}/12 câu thực hành đúng, 
+            đây là cơ hội tốt để xác định những điểm cần cải thiện. 
+            Hãy bắt đầu từ việc ôn lại các khái niệm cơ bản và thực hành nhiều hơn. 
+            Đừng nản chí, mọi lập trình viên giỏi đều đã từng trải qua giai đoạn này!`;
+        }
 
         return {
             overallScore,
             grade,
             gradeClass,
-            generalFeedback,
+            generalFeedback: encouragingFeedback,
             detailedResults: evaluationResults
         };
     }
@@ -356,88 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayResults(score, grade, gradeClass, generalFb, detailedFb, studentAnswers) {
         resultsContainer.style.display = 'block';
         aiGeneralFeedbackP.textContent = generalFb;
-        finalScoreSpan.textContent = score;
-        finalGradeSpan.textContent = grade;
-        finalGradeSpan.className = gradeClass;
-
-        detailedFeedbackDiv.innerHTML = '';
-        detailedFb.forEach(result => {
-            const question = questionsData.find(q => q.id === result.questionId);
-            const studentAnsObj = studentAnswers.find(sa => sa.questionId === result.questionId);
-            const studentAnswerText = studentAnsObj ? studentAnsObj.answer : "Không trả lời";
-            const questionNumericId = question ? parseInt(question.id.replace('q','')) : result.questionId;
-
-
-            let correctAnswerDisplay = '';
-            if (!result.isCorrect && question) {
-                if (question.type === 'theory') {
-                    try {
-                        const correctAnswerLetter = question.answer; // Giả sử question.answer là "A", "B", ...
-                        const correctAnswerIndex = correctAnswerLetter.charCodeAt(0) - 'A'.charCodeAt(0);
-                        if (question.options && question.options[correctAnswerIndex] !== undefined) {
-                            const correctAnswerText = question.options[correctAnswerIndex];
-                            correctAnswerDisplay = `<p><em>Đáp án đúng: ${correctAnswerText.replace(/</g, "<").replace(/>/g, ">")}</em></p>`;
-                        } else {
-                             correctAnswerDisplay = `<p><em>Lỗi hiển thị đáp án đúng (index out of bounds hoặc options/answer không hợp lệ).</em></p>`;
-                        }
-                    } catch (e) {
-                        console.error("Lỗi khi lấy đáp án lý thuyết:", e, question);
-                        correctAnswerDisplay = `<p><em>Lỗi hiển thị đáp án đúng.</em></p>`;
-                    }
-                } else if (question.type === 'practical') {
-                    // Sử dụng textContent để tránh XSS khi hiển thị đáp án mẫu
-                    const pre = document.createElement('pre');
-                    pre.textContent = question.answer; // An toàn hơn innerHTML
-                    correctAnswerDisplay = `<details><summary>Xem đáp án mẫu</summary>${pre.outerHTML}</details>`;
-                }
-            }
-
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('feedback-item');
-
-            // Tạo các phần tử DOM và gán textContent để an toàn hơn innerHTML
-            const strongTitle = document.createElement('strong');
-            strongTitle.textContent = `Câu ${questionNumericId}: ${question ? question.category : ''}`;
-
-            const pQuestion = document.createElement('p');
-            const emQuestion = document.createElement('em');
-            // Nội dung câu hỏi có thể chứa HTML (vd: <br>), nên dùng innerHTML ở đây là chấp nhận được
-            // nếu bạn kiểm soát nội dung file questions.json
-            emQuestion.innerHTML = `Hỏi: ${question ? question.question.substring(0,150).replace(/\n/g, '<br>')+(question.question.length > 150 ? '...' : '') : ''}`;
-            pQuestion.appendChild(emQuestion);
-
-            const userAnswerDiv = document.createElement('div');
-            userAnswerDiv.className = 'user-answer';
-            const strongUserAnswerLabel = document.createElement('strong');
-            strongUserAnswerLabel.textContent = 'Bạn trả lời:';
-            const preUserAnswer = document.createElement('pre');
-            preUserAnswer.textContent = studentAnswerText || "(Bỏ trống)";
-            userAnswerDiv.appendChild(strongUserAnswerLabel);
-            userAnswerDiv.appendChild(preUserAnswer);
-
-            const aiCommentDiv = document.createElement('div');
-            aiCommentDiv.className = `ai-comment ${result.isCorrect ? '' : 'incorrect'}`;
-            const strongAiCommentLabel = document.createElement('strong');
-            strongAiCommentLabel.textContent = 'AI nhận xét: ';
-            const feedbackTextNode = document.createTextNode(result.feedback); // Hiển thị feedback AI dưới dạng text
-            aiCommentDiv.appendChild(strongAiCommentLabel);
-            aiCommentDiv.appendChild(feedbackTextNode);
-
-            itemDiv.appendChild(strongTitle);
-            itemDiv.appendChild(pQuestion);
-            itemDiv.appendChild(userAnswerDiv);
-            itemDiv.appendChild(aiCommentDiv);
-
-            if (correctAnswerDisplay) {
-                // Vì correctAnswerDisplay đã được tạo an toàn ở trên, có thể dùng innerHTML
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = correctAnswerDisplay;
-                while (tempDiv.firstChild) {
-                    itemDiv.appendChild(tempDiv.firstChild);
-                }
-            }
-            detailedFeedbackDiv.appendChild(itemDiv);
-        });
         resultsContainer.scrollIntoView({ behavior: 'smooth' });
     }
 
