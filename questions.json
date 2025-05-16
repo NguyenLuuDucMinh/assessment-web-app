@@ -1,0 +1,155 @@
+[
+  {
+    "id": "q1",
+    "category": "Độ phức tạp thuật toán",
+    "type": "theory",
+    "question": "Độ phức tạp thời gian của thuật toán tìm kiếm nhị phân (Binary Search) là:",
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+    "answer": "C"
+  },
+  {
+    "id": "q2",
+    "category": "Cấu trúc dữ liệu",
+    "type": "theory",
+    "question": "Cấu trúc dữ liệu nào nên được sử dụng khi cần thực hiện các hoạt động \"Last-In-First-Out\" (LIFO)?",
+    "options": ["Queue", "Stack", "Linked List", "Binary Tree"],
+    "answer": "B"
+  },
+  {
+    "id": "q3",
+    "category": "Nguyên tắc lập trình",
+    "type": "theory",
+    "question": "Nguyên tắc DRY trong lập trình có nghĩa là:",
+    "options": ["Don't Repeat Yourself", "Data Redundancy Yield", "Debug Rigorously Yourself", "Define Resources Yearly"],
+    "answer": "A"
+  },
+  {
+    "id": "q4",
+    "category": "Lập trình hướng đối tượng",
+    "type": "theory",
+    "question": "Đâu KHÔNG phải là một trong bốn nguyên tắc cơ bản của lập trình hướng đối tượng?",
+    "options": ["Tính kế thừa (Inheritance)", "Tính bao đóng (Encapsulation)", "Tính đa hình (Polymorphism)", "Tính tuần tự (Sequentiality)"],
+    "answer": "D"
+  },
+  {
+    "id": "q5",
+    "category": "Xử lý lỗi",
+    "type": "theory",
+    "question": "Đúng hay Sai: Exception handling (xử lý ngoại lệ) là một phương pháp để xử lý lỗi syntax trong quá trình biên dịch.",
+    "options": ["Đúng", "Sai"],
+    "answer": "B"
+  },
+  {
+    "id": "q6",
+    "category": "Thuật toán",
+    "type": "theory",
+    "question": "Thuật toán sắp xếp nào sau đây có độ phức tạp thời gian trường hợp tệ nhất là O(n²)?",
+    "options": ["Merge Sort", "Quick Sort", "Heap Sort", "Tất cả đều đúng"],
+    "answer": "B"
+  },
+  {
+    "id": "q7",
+    "category": "Kiểu dữ liệu và cấu trúc dữ liệu",
+    "type": "theory",
+    "question": "Hash table sử dụng cơ chế nào để lưu trữ và truy xuất dữ liệu?",
+    "options": ["Indexing", "Hashing function", "Sequential searching", "Binary search"],
+    "answer": "B"
+  },
+  {
+    "id": "q8",
+    "category": "Nguyên tắc thiết kế phần mềm",
+    "type": "theory",
+    "question": "Nguyên tắc \"SOLID\" trong thiết kế phần mềm hướng đối tượng bao gồm những nguyên tắc nào? Chọn đáp án đúng.",
+    "options": [
+      "Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion",
+      "Structured programming, Object-oriented design, Logical flow, Iterative development, Data abstraction",
+      "Syntax checking, Optimization, Logic verification, Integrated testing, Documentation",
+      "Security, Optimization, Logical design, Inheritance, Debugging"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "q9",
+    "category": "Xử lý mảng/danh sách",
+    "type": "practical",
+    "question": "Viết một thuật toán để tìm phần tử lớn thứ hai trong một mảng số nguyên không sắp xếp. Không được sắp xếp mảng.",
+    "answer": "function findSecondLargest(arr):\n    if length(arr) < 2:\n        return \"Mảng cần có ít nhất 2 phần tử\"\n    \n    largest = -∞\n    secondLargest = -∞\n    \n    for each element in arr:\n        if element > largest:\n            secondLargest = largest\n            largest = element\n        else if element > secondLargest and element != largest:\n            secondLargest = element\n    \n    if secondLargest == -∞:\n        return \"Không tìm thấy phần tử lớn thứ hai\"\n    \n    return secondLargest"
+  },
+  {
+    "id": "q10",
+    "category": "Xử lý chuỗi",
+    "type": "practical",
+    "question": "Viết thuật toán để kiểm tra một chuỗi có phải là palindrome hay không (đọc xuôi ngược đều giống nhau), không phân biệt hoa thường và bỏ qua các ký tự không phải chữ cái.",
+    "answer": "function isPalindrome(text):\n    # Chuyển thành chữ thường và loại bỏ ký tự không phải chữ cái\n    cleanText = \"\"\n    for each char in text:\n        if char is alphanumeric:\n            cleanText += lowercase(char)\n    \n    # Kiểm tra palindrome\n    left = 0\n    right = length(cleanText) - 1\n    \n    while left < right:\n        if cleanText[left] != cleanText[right]:\n            return false\n        left += 1\n        right -= 1\n    \n    return true"
+  },
+  {
+    "id": "q11",
+    "category": "Đệ quy",
+    "type": "practical",
+    "question": "Viết hàm đệ quy để tính số Fibonacci thứ n. Sau đó, thảo luận về nhược điểm của giải pháp đệ quy này và đề xuất một phương pháp cải tiến.",
+    "answer": "# Giải pháp đệ quy\nfunction fibonacci_recursive(n):\n    if n <= 1:\n        return n\n    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)\n\n# Giải pháp cải tiến sử dụng dynamic programming\nfunction fibonacci_improved(n):\n    if n <= 1:\n        return n\n    \n    fib = array of size (n+1)\n    fib[0] = 0\n    fib[1] = 1\n    \n    for i from 2 to n:\n        fib[i] = fib[i-1] + fib[i-2]\n    \n    return fib[n]\n\nNhược điểm của giải pháp đệ quy: Tính toán lặp lại nhiều lần cùng một giá trị, dẫn đến độ phức tạp thời gian là O(2^n), có thể gây tràn stack với n lớn.\nCải tiến: Sử dụng dynamic programming hoặc memoization để lưu trữ kết quả đã tính, giảm độ phức tạp xuống O(n)."
+  },
+  {
+    "id": "q12",
+    "category": "Thuật toán tìm kiếm",
+    "type": "practical",
+    "question": "Phân tích và viết thuật toán tìm kiếm nhị phân (Binary Search). Nêu rõ điều kiện tiên quyết và độ phức tạp của thuật toán.",
+    "answer": "function binarySearch(arr, target):\n    left = 0\n    right = length(arr) - 1\n    \n    while left <= right:\n        mid = floor((left + right) / 2) # Ensure mid is an integer index\n        \n        if arr[mid] == target:\n            return mid\n        else if arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return -1  # Target not found\n\nĐiều kiện tiên quyết: Mảng phải được sắp xếp trước.\nĐộ phức tạp: O(log n) trong thời gian, O(1) trong không gian."
+  },
+  {
+    "id": "q13",
+    "category": "Sửa lỗi",
+    "type": "practical",
+    "question": "Đoạn code sau đây có lỗi logic. Hãy tìm và sửa lỗi:\n\nfunction isPrime(n):\n    if n <= 1:\n        return false\n    if n <= 3:\n        return true\n    if n % 2 == 0:\n        return false\n    \n    i = 3\n    while i < n:\n        if n % i == 0:\n            return false\n        i = i + 2\n    \n    return true",
+    "answer": "Lỗi: Vòng lặp kiểm tra đến n, không hiệu quả và không cần thiết.\nCode sửa:\nfunction isPrime(n):\n    if n <= 1:\n        return false\n    if n <= 3:\n        return true\n    if n % 2 == 0 or n % 3 == 0: # Added n % 3 == 0 check for optimization\n        return n == 2 or n == 3 # Only 2 and 3 are prime if divisible by 2 or 3\n    \n    i = 5\n    while i * i <= n:  # Chỉ cần kiểm tra đến căn bậc hai của n\n        if n % i == 0 or n % (i + 2) == 0: # Check i and i+2 (6k ± 1 optimization)\n            return false\n        i = i + 6 # Increment by 6 for 6k ± 1 optimization\n    \n    return true"
+  },
+  {
+    "id": "q14",
+    "category": "Lập trình hướng đối tượng",
+    "type": "practical",
+    "question": "Thiết kế một hệ thống quản lý thư viện đơn giản sử dụng các nguyên tắc OOP. Hãy xác định các lớp, mối quan hệ giữa chúng và các phương thức chính.",
+    "answer": "class Book:\n    properties:\n        - id\n        - title\n        - author\n        - isAvailable\n    methods:\n        - getDetails()\n        - checkOut()\n        - checkIn()\n\nclass Library:\n    properties:\n        - books (collection of Book objects)\n        - members (collection of Member objects)\n    methods:\n        - addBook(book)\n        - removeBook(bookId)\n        - searchBooks(query)\n        - registerMember(member)\n        - removeMember(memberId)\n\nclass Member:\n    properties:\n        - id\n        - name\n        - borrowedBooks (collection of Book objects)\n    methods:\n        - borrowBook(book)\n        - returnBook(book)\n        - getBorrowedBooks()\n\nclass LibrarySystem:\n    properties:\n        - library\n    methods:\n        - processBookCheckout(bookId, memberId)\n        - processBookReturn(bookId, memberId)\n        - generateReports()\n\nMối quan hệ:\nLibrary chứa nhiều Books và Members (Quan hệ composition)\nMember có thể mượn nhiều Books (Quan hệ association)\nLibrarySystem sử dụng Library để thực hiện các chức năng quản lý (Quan hệ aggregation/composition depending on lifecycle)"
+  },
+  {
+    "id": "q15",
+    "category": "Xử lý ngoại lệ",
+    "type": "practical",
+    "question": "Viết pseudocode để xử lý các ngoại lệ trong một hàm chia hai số, bao gồm xử lý trường hợp chia cho 0 và kiểm tra đầu vào không phải số.",
+    "answer": "function safeDivide(a, b):\n    try:\n        if not isNumber(a) or not isNumber(b):\n            throw new TypeError(\"Both inputs must be numbers\")\n        \n        if b == 0:\n            throw new DivideByZeroError(\"Cannot divide by zero\")\n            \n        result = a / b\n        return result\n        \n    catch TypeError as e:\n        log(e.message)\n        return null // Or re-throw, or specific error value\n        \n    catch DivideByZeroError as e:\n        log(e.message)\n        return Infinity  // hoặc giá trị khác tùy vào yêu cầu, e.g., null\n        \n    finally:\n        log(\"Division operation completed\")"
+  },
+  {
+    "id": "q16",
+    "category": "Tối ưu hóa code",
+    "type": "practical",
+    "question": "Đoạn code sau đây tính tổng các số chẵn trong một mảng. Hãy tối ưu hóa nó và giải thích sự cải tiến.\n\nfunction sumEvenNumbers(array):\n    sum = 0\n    for i from 0 to length(array)-1:\n        current = array[i]\n        if current % 2 == 0:\n            isEven = true\n        else:\n            isEven = false\n        \n        if isEven == true:\n            sum = sum + current\n    \n    return sum",
+    "answer": "function sumEvenNumbers_optimized(array):\n    sum = 0\n    for each number in array: // More readable loop\n        if number % 2 == 0: // Direct check\n            sum += number // Shorthand assignment\n    \n    return sum\n\nGiải thích sự cải tiến:\n1. Loại bỏ biến trung gian `isEven` không cần thiết: Điều kiện `current % 2 == 0` có thể được sử dụng trực tiếp.\n2. Đơn giản hóa điều kiện: Không cần gán `true`/`false` cho `isEven` rồi lại kiểm tra `isEven == true`.\n3. Sử dụng cú pháp vòng lặp \"for each\" (hoặc `for...of` trong JS): Giúp code rõ ràng hơn và ít lỗi hơn so với vòng lặp `for` truyền thống với chỉ số.\n4. Sử dụng phép toán `+=`: Làm code ngắn gọn hơn (`sum = sum + current` thành `sum += current`)."
+  },
+  {
+    "id": "q17",
+    "category": "Stack và Queue",
+    "type": "practical",
+    "question": "Viết một thuật toán để kiểm tra dấu ngoặc trong một biểu thức có cân bằng hay không. Ví dụ: \"{[()]}\" là cân bằng, \"{[(]}\" không cân bằng.",
+    "answer": "function isBalanced(expression):\n    stack = new Stack()\n    mapping = { \")\": \"(\", \"]\": \"[\", \"}\": \"{\" }\n\n    for each char in expression:\n        if char in ['(', '[', '{']:\n            stack.push(char)\n        else if char in [')', ']', '}']:\n            if stack is empty:\n                return false // Closing bracket with no opening\n            \n            topElement = stack.pop()\n            if mapping[char] != topElement:\n                return false // Mismatched brackets\n    \n    return stack is empty // True if all opening brackets were matched"
+  },
+  {
+    "id": "q18",
+    "category": "Xử lý file",
+    "type": "practical",
+    "question": "Mô tả thuật toán để đọc một file text, đếm số lần xuất hiện của mỗi từ và xuất kết quả ra file mới, sắp xếp theo tần suất giảm dần.",
+    "answer": "function countWordFrequency(inputFilePath, outputFilePath):\n    wordCount = new Dictionary() // or Hash Map\n    \n    // 1. Read input file\n    try:\n        fileContent = readFileToString(inputFilePath)\n    catch FileNotFoundError:\n        return \"Input file not found\"\n    catch ReadPermissionError:\n        return \"Cannot read input file\"\n\n    // 2. Process content\n    // Normalize text: lowercase, remove punctuation (can be complex)\n    normalizedContent = toLowerCase(fileContent)\n    // A simple way to remove punctuation, could be more robust\n    normalizedContent = replaceAll(normalizedContent, \"[^a-zA-Z0-9\\s]\", \"\") \n\n    words = splitIntoWords(normalizedContent) // Split by space, newline, etc.\n    \n    for each word in words:\n        if word is not empty: // Avoid counting empty strings if split creates them\n            if word in wordCount:\n                wordCount[word] += 1\n            else:\n                wordCount[word] = 1\n    \n    // 3. Sort by frequency\n    // Convert dictionary to a list of (word, count) pairs\n    sortedWordList = convertToList(wordCount)\n    // Sort the list by count in descending order. If counts are equal, sort by word alphabetically (optional).\n    sort(sortedWordList, key=lambda item: (item.count, item.word), reverseForCount=true, reverseForWord=false)\n    \n    // 4. Write to output file\n    try:\n        outputFile = openFile(outputFilePath, \"write\")\n        for each (word, count) in sortedWordList:\n            writeLine(outputFile, word + \": \" + count)\n        closeFile(outputFile)\n    catch WritePermissionError:\n        return \"Cannot write to output file\"\n    \n    return \"Word count completed successfully\""
+  },
+  {
+    "id": "q19",
+    "category": "Phân tích thuật toán",
+    "type": "practical",
+    "question": "Phân tích độ phức tạp về thời gian và không gian của thuật toán sau:\n\nfunction mystery(arr, n):\n    if n <= 0:\n        return 0\n    \n    result = 0\n    for i from 0 to n-1:\n        for j from i to n-1:\n            result += arr[i] * arr[j]\n    \n    return result",
+    "answer": "Độ phức tạp thời gian: O(n²)\nGiải thích:\n- Vòng lặp ngoài (`for i from 0 to n-1`) chạy n lần.\n- Vòng lặp trong (`for j from i to n-1`) phụ thuộc vào `i`:\n  - Khi i = 0, vòng trong chạy n lần (j từ 0 đến n-1).\n  - Khi i = 1, vòng trong chạy n-1 lần (j từ 1 đến n-1).\n  - ...\n  - Khi i = n-1, vòng trong chạy 1 lần (j từ n-1 đến n-1).\nTổng số lần thực thi của câu lệnh `result += arr[i] * arr[j]` là: n + (n-1) + (n-2) + ... + 1.\nĐây là tổng của một cấp số cộng, bằng n*(n+1)/2.\nTrong phân tích độ phức tạp Big O, chúng ta quan tâm đến bậc cao nhất và bỏ qua hằng số, vì vậy độ phức tạp thời gian là O(n²).\n\nĐộ phức tạp không gian: O(1)\nGiải thích:\nThuật toán chỉ sử dụng một số lượng biến cố định (result, i, j, n, arr - `arr` là tham chiếu đầu vào, không tính vào không gian phụ trợ do thuật toán tạo ra). Kích thước của các biến này không phụ thuộc vào kích thước đầu vào `n` của mảng (ngoại trừ `arr` là đầu vào). Do đó, không gian phụ trợ sử dụng là hằng số, O(1)."
+  },
+  {
+    "id": "q20",
+    "category": "Bài tập tổng hợp",
+    "type": "practical",
+    "question": "Viết thuật toán để tìm đường đi ngắn nhất trong một ma trận từ góc trên bên trái đến góc dưới bên phải. Chỉ được di chuyển xuống hoặc sang phải. Mỗi ô chứa một giá trị chi phí khi đi qua ô đó.",
+    "answer": "function findShortestPath(matrix):\n    if matrix is empty or matrix[0] is empty:\n        return 0 // Or throw error for invalid input\n\n    rows = number of rows in matrix\n    cols = number of columns in matrix\n    \n    // Khởi tạo mảng dp để lưu chi phí nhỏ nhất đến ô (i, j)\n    dp = new matrix of size rows x cols, initialized with 0\n    \n    // Khởi tạo giá trị cho ô đầu tiên (0,0)\n    dp[0][0] = matrix[0][0]\n    \n    // Điền giá trị cho cột đầu tiên (chỉ có thể đi xuống từ ô trên)\n    for i from 1 to rows-1:\n        dp[i][0] = dp[i-1][0] + matrix[i][0]\n    \n    // Điền giá trị cho hàng đầu tiên (chỉ có thể đi sang phải từ ô trái)\n    for j from 1 to cols-1:\n        dp[0][j] = dp[0][j-1] + matrix[0][j]\n    \n    // Điền giá trị cho các ô còn lại\n    // Để đến ô (i,j), ta có thể đến từ ô (i-1,j) (đi xuống) hoặc (i,j-1) (đi sang phải)\n    for i from 1 to rows-1:\n        for j from 1 to cols-1:\n            costFromTop = dp[i-1][j]\n            costFromLeft = dp[i][j-1]\n            dp[i][j] = matrix[i][j] + min(costFromTop, costFromLeft)\n    \n    // Kết quả là chi phí ở ô cuối cùng (góc dưới bên phải)\n    return dp[rows-1][cols-1]"
+  }
+]

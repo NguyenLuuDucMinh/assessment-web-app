@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Test Đánh Giá Năng Lực Lập Trình</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bài Test Đánh Giá Năng Lực Lập Trình</h1>
+        <p>Dành cho Sinh Viên Ngành Computer Science</p>
+
+        <div id="student-info-form">
+            <h2>Thông tin sinh viên</h2>
+            <label for="studentName">Họ và tên:</label>
+            <input type="text" id="studentName" name="studentName" required>
+
+            <label for="studentSchool">Trường:</label>
+            <input type="text" id="studentSchool" name="studentSchool" required>
+
+            <label for="studentCourse">Khoá/Lớp/Ngành:</label>
+            <input type="text" id="studentCourse" name="studentCourse" required>
+        </div>
+
+        <form id="quiz-form">
+            <div id="quiz-container">
+                <!-- Câu hỏi sẽ được tải vào đây -->
+            </div>
+            <button type="submit" id="submitBtn">Nộp Bài</button>
+        </form>
+
+        <div id="results-container" style="display: none;">
+            <h2>Kết quả đánh giá</h2>
+            <div id="overall-feedback">
+                <h3>Đánh giá chung:</h3>
+                <p id="aiGeneralFeedback"></p>
+                <h3>Điểm số: <span id="finalScore"></span>/10</h3>
+                <h3>Xếp loại: <span id="finalGrade"></span></h3>
+            </div>
+            <hr>
+            <h3>Chi tiết từng câu:</h3>
+            <div id="detailed-feedback">
+                <!-- Phản hồi chi tiết từng câu -->
+            </div>
+        </div>
+        <div id="loading-indicator" style="display:none; text-align:center; margin-top:20px;">
+            <p>Đang xử lý và đánh giá bài làm, vui lòng chờ...</p>
+            <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." width="50">
+        </div>
+    </div>
+
+    <!-- Thư viện Google API Client Library (CẦN THIẾT CHO GEMINI) -->
+    <!-- Thay YOUR_API_KEY bằng API Key của bạn -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

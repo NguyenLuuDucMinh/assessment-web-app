@@ -1,0 +1,356 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.65;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 20px;
+}
+
+/* --- TIÊU ĐỀ CHÍNH H1 --- */
+h1 {
+    text-align: center;
+    margin-top: 0; /* Xóa margin-top nếu là phần tử đầu tiên trong container */
+    margin-bottom: 35px; /* Tăng khoảng cách dưới */
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 20px 15px;
+    background: linear-gradient(135deg, #56ccf2, #2f80ed); /* Gradient Xanh dương khác */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(47, 128, 237, 0.3);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* --- TIÊU ĐỀ CÁC PHẦN H2 --- */
+h2 {
+    padding-bottom: 12px;
+    margin-top: 45px;
+    margin-bottom: 30px; /* Tăng khoảng cách dưới */
+    font-size: 2em; /* To hơn chút */
+    font-weight: 600;
+    color: #2c3e50; /* Màu chữ tối */
+    border-bottom: 4px solid; /* Đường kẻ dưới dày hơn */
+    /* Sử dụng border-image cho đường kẻ gradient */
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #56ccf2, #2f80ed);
+    /* Để tương thích, nếu border-image không được hỗ trợ: */
+    /* border-bottom-color: #3498db; */
+}
+
+/* Loại bỏ border-image cho những h2 không cần thiết và style lại */
+#student-info-form h2 {
+    border-image: none; /* Loại bỏ gradient */
+    border-bottom: 3px solid #bdc3c7; /* Đường kẻ xám nhạt */
+    color: #34495e;
+    margin-top: 0;
+    font-size: 1.7em;
+}
+
+#results-container h2 { /* Tiêu đề "Kết quả đánh giá" */
+    border-image: none;
+    border-bottom: 4px solid #2ecc71; /* Đường kẻ xanh lá */
+    color: #27ae60; /* Chữ xanh lá */
+    font-size: 1.8em;
+}
+
+
+/* --- CÁC PHẦN CÒN LẠI GIỮ NGUYÊN HOẶC CHỈNH NHẸ --- */
+
+#student-info-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+#student-info-form input[type="text"] {
+    width: calc(100% - 26px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #dcdfe6;
+    background-color: #fdfdfd;
+    color: #333;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95em;
+}
+
+#student-info-form input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    outline: none;
+}
+
+.question-block {
+    margin-bottom: 35px;
+    padding: 25px;
+    border: 1px solid #e4e7ed;
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+/* TIÊU ĐỀ CATEGORY H3 */
+.question-block h3 {
+    font-size: 1.25em; /* To hơn */
+    margin-top: 0;
+    margin-bottom: 15px; /* Tăng khoảng cách */
+    color: #2980b9;
+    font-weight: 600; /* Đậm hơn */
+    padding-bottom: 10px;
+    border-bottom: 2px solid #aed6f1; /* Đường kẻ xanh nhạt hơn */
+}
+
+
+.question-block > p:first-of-type,
+.question-block > div:first-of-type {
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.7;
+    color: #4A4A4A;
+}
+
+.options label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.options label:hover {
+    background-color: #eaf6ff;
+    border-color: #a3d3f7;
+}
+
+.options input[type="radio"] {
+    margin-right: 12px;
+    vertical-align: middle;
+    transform: scale(1.05);
+    accent-color: #3498db;
+}
+
+textarea {
+    width: calc(100% - 26px);
+    min-height: 160px;
+    padding: 12px;
+    border: 1px solid #dcdfe6;
+    background-color: #fdfdfd;
+    color: #333;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95em;
+    box-sizing: border-box;
+    margin-top: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    line-height: 1.5;
+}
+
+textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    outline: none;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.25s, transform 0.1s;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+button[type="submit"]:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+button[type="submit"]:disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#results-container {
+    margin-top: 40px;
+    padding: 25px 30px;
+    border: 1px solid #d1e9ff;
+    background-color: #f2f8fd;
+    border-radius: 8px;
+}
+
+/* TIÊU ĐỀ H3 TRONG PHẦN KẾT QUẢ */
+#results-container #overall-feedback h3 {
+    color: #2c3e50;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.3em; /* Điều chỉnh kích thước */
+    font-weight: 600;
+    border-left: 5px solid #f39c12; /* Giữ lại viền cam */
+    padding-left: 15px; /* Tăng padding */
+    line-height: 1.4; /* Đảm bảo chữ không quá sát */
+}
+#results-container #overall-feedback h3:first-child {
+    margin-top: 0;
+}
+
+
+#detailed-feedback .feedback-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+#detailed-feedback .feedback-item strong {
+    color: #3498db;
+    font-weight: 600;
+}
+
+#detailed-feedback .feedback-item .question-text-display {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+#detailed-feedback .feedback-item .question-text-display em {
+    font-style: normal;
+}
+
+#detailed-feedback .feedback-item .user-answer {
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    font-size: 0.9em;
+    max-height: 250px;
+    overflow-y: auto;
+}
+#detailed-feedback .feedback-item .user-answer pre {
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+}
+
+#detailed-feedback .feedback-item .ai-comment {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e6ffed;
+    border-left: 4px solid #2ecc71;
+    color: #27ae60;
+    font-style: normal;
+    font-size: 0.95em;
+    border-radius: 0 4px 4px 0;
+}
+#detailed-feedback .feedback-item .ai-comment.incorrect {
+    background-color: #ffe6e6;
+    border-left-color: #e74c3c;
+    color: #c0392b;
+}
+
+#detailed-feedback .feedback-item details {
+    margin-top: 10px;
+}
+#detailed-feedback .feedback-item details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: #2980b9;
+    padding: 5px 0;
+}
+#detailed-feedback .feedback-item details summary:hover {
+    color: #1f618d;
+}
+#detailed-feedback .feedback-item .model-answer-container pre,
+#detailed-feedback .feedback-item p em {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#detailed-feedback .feedback-item p em {
+    font-style: normal;
+    display: inline-block;
+}
+
+#finalGrade { font-weight: 700; }
+#finalGrade.excellent { color: #2ecc71; }
+#finalGrade.good { color: #1abc9c; }
+#finalGrade.fair { color: #f1c40f; }
+#finalGrade.average { color: #e67e22; }
+#finalGrade.weak { color: #e74c3c; }
+
+#loading-indicator {
+    padding: 20px;
+    text-align: center;
+}
+#loading-indicator p {
+    font-size: 1.1em;
+    color: #555;
+}
+#loading-indicator img {
+    margin-top: 15px;
+    width: 60px;
+}
+
+pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    border: 1px solid #e9ecef;
+    color: #212529;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
