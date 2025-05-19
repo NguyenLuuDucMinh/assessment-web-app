@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // !!! QUAN TRỌNG: API Key không nên để lộ trực tiếp trong code client-side ở môi trường production.
     // !!! Đây là phiên bản demo, hãy cân nhắc các biện pháp bảo mật API Key của bạn.
     const GEMINI_API_KEY = 'AIzaSyCSd73INjzoI4vOxQhsQwJIABFO0ocjdo0'; // API Key của bạn
-    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxS23dW9cSlgs5ofhHRHqxWFHLP08x6loi6W2rJKcR6DTzd0LNz-G9P9UPkXhZxJifc-g/exec'; // URL Web App của bạn
+    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrPaTBVhgpNlxJuM8ZOiZOIJaFX0ocKkSX7Zsnt7FltL5c1yHyf5uQkHVHcIYkobRQOg/exec'; 
     // --------------------
 
     let questionsData = [];
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveToGoogleSheet(data) {
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxS23dW9cSlgs5ofhHRHqxWFHLP08x6loi6W2rJKcR6DTzd0LNz-G9P9UPkXhZxJifc-g/exec'; // Thay bằng URL của bạn
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrPaTBVhgpNlxJuM8ZOiZOIJaFX0ocKkSX7Zsnt7FltL5c1yHyf5uQkHVHcIYkobRQOg/exec'; // Thay bằng URL của bạn
 
         try {
             const response = await fetch(SCRIPT_URL, {
