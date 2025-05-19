@@ -19,8 +19,20 @@
             <label for="studentSchool">Trường:</label>
             <input type="text" id="studentSchool" name="studentSchool" required>
 
-            <label for="studentCourse">Khoá/Lớp/Ngành:</label>
+            <label for="studentCourse">Ngành:</label>
             <input type="text" id="studentCourse" name="studentCourse" required>
+
+            <label for="studentYear">Năm học:</label>
+            <input type="number" id="studentYear" name="studentYear" min="1" max="6" required>
+
+            <label for="studentClass">Khóa:</label>
+            <input type="text" id="studentClass" name="studentClass" placeholder="VD: K45" required>
+
+            <label for="studentPhone">Số điện thoại:</label>
+            <input type="tel" id="studentPhone" name="studentPhone" pattern="[0-9]{10}" required>
+
+            <label for="studentEmail">Email:</label>
+            <input type="email" id="studentEmail" name="studentEmail" required>
         </div>
 
         <form id="quiz-form">

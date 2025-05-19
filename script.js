@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // !!! QUAN TRỌNG: API Key không nên để lộ trực tiếp trong code client-side ở môi trường production.
     // !!! Đây là phiên bản demo, hãy cân nhắc các biện pháp bảo mật API Key của bạn.
     const GEMINI_API_KEY = 'AIzaSyCSd73INjzoI4vOxQhsQwJIABFO0ocjdo0'; // API Key của bạn
-    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrPaTBVhgpNlxJuM8ZOiZOIJaFX0ocKkSX7Zsnt7FltL5c1yHyf5uQkHVHcIYkobRQOg/exec'; 
+    const GOOGLE_SHEET_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAINqAGJBCYazM29GgTF3DzN6dm5PpdNaVXs4q7mXnvt5kY8KoRI2OYP9SDvSHHCKM/exec'; // URL Web App của bạn
     // --------------------
 
     let questionsData = [];
@@ -93,6 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
             name: studentNameInput.value.trim(),
             school: studentSchoolInput.value.trim(),
             course: studentCourseInput.value.trim(),
+            year: document.getElementById('studentYear').value,
+            class: document.getElementById('studentClass').value.trim(),
+            phone: document.getElementById('studentPhone').value.trim(),
+            email: document.getElementById('studentEmail').value.trim(),
             submissionTime: new Date().toLocaleString('vi-VN')
         };
 
@@ -378,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveToGoogleSheet(data) {
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrPaTBVhgpNlxJuM8ZOiZOIJaFX0ocKkSX7Zsnt7FltL5c1yHyf5uQkHVHcIYkobRQOg/exec'; // Thay bằng URL của bạn
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAINqAGJBCYazM29GgTF3DzN6dm5PpdNaVXs4q7mXnvt5kY8KoRI2OYP9SDvSHHCKM/exec'; // Thay bằng URL của bạn
 
         try {
             const response = await fetch(SCRIPT_URL, {

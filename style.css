@@ -72,7 +72,6 @@ h2 {
     font-size: 1.8em;
 }
 
-
 /* --- CÁC PHẦN CÒN LẠI GIỮ NGUYÊN HOẶC CHỈNH NHẸ --- */
 
 #student-info-form label {
@@ -82,24 +81,34 @@ h2 {
     color: #555;
 }
 
-#student-info-form input[type="text"] {
-    width: calc(100% - 26px);
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #dcdfe6;
-    background-color: #fdfdfd;
-    color: #333;
-    border-radius: 6px;
+#student-info-form input[type="text"],
+#student-info-form input[type="number"],
+#student-info-form input[type="tel"],
+#student-info-form input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.95em;
+    font-size: 16px;
 }
 
-#student-info-form input[type="text"]:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+#student-info-form input:focus {
     outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Đảm bảo input number không có mũi tên */
+#student-info-form input[type="number"]::-webkit-inner-spin-button,
+#student-info-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#student-info-form input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .question-block {
@@ -120,7 +129,6 @@ h2 {
     padding-bottom: 10px;
     border-bottom: 2px solid #aed6f1; /* Đường kẻ xanh nhạt hơn */
 }
-
 
 .question-block > p:first-of-type,
 .question-block > div:first-of-type {
@@ -231,7 +239,6 @@ button[type="submit"]:disabled {
 #results-container #overall-feedback h3:first-child {
     margin-top: 0;
 }
-
 
 #detailed-feedback .feedback-item {
     margin-bottom: 20px;

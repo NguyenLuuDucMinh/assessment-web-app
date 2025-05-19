@@ -17,8 +17,8 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     
     // Định nghĩa ID của Google Sheet và tên sheet
-    const SHEET_ID = '1AAGOoeD3sWKKvqmFq1JBiji1bCAC9oR5s2QRSYhhDwY';  // Thay thế bằng ID sheet của bạn
-    const SHEET_NAME = 'De1';  // Thay thế bằng tên sheet của bạn
+    const SHEET_ID = '1_YsKUUuEPBrFk8sswmBkPHbw-S3ySShhz11toEZoZwU';  // Thay thế bằng ID sheet của bạn
+    const SHEET_NAME = 'De2';  // Thay thế bằng tên sheet của bạn
     
     // Mở spreadsheet theo ID
     const ss = SpreadsheetApp.openById(SHEET_ID);
@@ -28,17 +28,20 @@ function doPost(e) {
       throw new Error('Không tìm thấy sheet');
     }
     
-    // Thêm dữ liệu vào sheet theo cấu trúc mới
+    // Thêm dữ liệu vào sheet với nhiều thông tin hơn
     sheet.appendRow([
-      new Date(),                              // Timestamp
-      data.studentInfo.name,                   // Tên sinh viên
-      data.studentInfo.school,                 // Trường
-      data.studentInfo.course,                 // Khóa/Ngành
-      data.studentInfo.submissionTime,         // Thời gian nộp bài
-      data.aiEvaluation.score,                 // Điểm số
-      data.aiEvaluation.grade,                 // Xếp loại
-      data.aiEvaluation.generalFeedback,       // Đánh giá chung
-      JSON.stringify(data.studentAnswers),     // Chi tiết câu trả lời
+        new Date(),                    // Timestamp
+        data.studentInfo.name,         // Tên sinh viên
+        data.studentInfo.school,       // Trường
+        data.studentInfo.course,       // Ngành
+        data.studentInfo.year,         // Năm học
+        data.studentInfo.class,        // Khóa
+        data.studentInfo.phone,        // Số điện thoại
+        data.studentInfo.email,        // Email
+        data.aiEvaluation.score,       // Điểm số
+        data.aiEvaluation.grade,       // Xếp loại
+        data.aiEvaluation.generalFeedback,  // Đánh giá chung
+        JSON.stringify(data.studentAnswers), // Chi tiết câu trả lời
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
