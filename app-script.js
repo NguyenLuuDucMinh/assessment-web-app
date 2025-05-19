@@ -17,8 +17,8 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     
     // Định nghĩa ID của Google Sheet và tên sheet
-    const SHEET_ID = '1BN0FJU1nfuvK5Jze0g9f8ycwAi31c4Uls2KJfYe2aHY';  // Thay thế bằng ID sheet của bạn
-    const SHEET_NAME = 'Submissions';  // Thay thế bằng tên sheet của bạn
+    const SHEET_ID = '1AAGOoeD3sWKKvqmFq1JBiji1bCAC9oR5s2QRSYhhDwY';  // Thay thế bằng ID sheet của bạn
+    const SHEET_NAME = 'De1';  // Thay thế bằng tên sheet của bạn
     
     // Mở spreadsheet theo ID
     const ss = SpreadsheetApp.openById(SHEET_ID);
@@ -39,7 +39,6 @@ function doPost(e) {
       data.aiEvaluation.grade,                 // Xếp loại
       data.aiEvaluation.generalFeedback,       // Đánh giá chung
       JSON.stringify(data.studentAnswers),     // Chi tiết câu trả lời
-      JSON.stringify(data.aiEvaluation.detailedFeedback)  // Chi tiết đánh giá
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
