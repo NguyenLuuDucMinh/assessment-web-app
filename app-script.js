@@ -29,7 +29,7 @@ function doPost(e) {
     }
     
     // Thêm dữ liệu vào sheet với nhiều thông tin hơn
-    sheet.appendRow([
+    const basicInfo = [
         new Date(),                    // Timestamp
         data.studentInfo.name,         // Tên sinh viên
         data.studentInfo.school,       // Trường
@@ -40,9 +40,26 @@ function doPost(e) {
         data.studentInfo.email,        // Email
         data.aiEvaluation.score,       // Điểm số
         data.aiEvaluation.grade,       // Xếp loại
-        data.aiEvaluation.generalFeedback,  // Đánh giá chung
-        JSON.stringify(data.studentAnswers), // Chi tiết câu trả lời
-    ]);
+        data.aiEvaluation.generalFeedback  // Đánh giá chung
+    ];
+
+    // Xử lý câu trả lời của sinh viên
+    const answers = data.studentAnswers.reduce((acc, ans) => {
+        acc[ans.id] = ans.answer;
+        return acc;
+    }, {});
+
+    // Tạo mảng chứa câu trả lời cho 20 câu hỏi
+    const answersArray = Array.from({ length: 20 }, (_, i) => {
+        const qId = `q${i + 1}`;
+        return answers[qId] || ''; // Nếu không có câu trả lời thì để trống
+    });
+
+    // Gộp thông tin cơ bản và câu trả lời
+    const rowData = [...basicInfo, ...answersArray];
+    
+    // Thêm dữ liệu vào sheet
+    sheet.appendRow(rowData);
 
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
       .setMimeType(ContentService.MimeType.JSON)
